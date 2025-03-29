@@ -48,16 +48,15 @@ jobs:
           --transform-object-keys true \
           --unicode-escape-sequence true
 
- #    - name: Commit changes
- #      uses: stefanzweifel/git-auto-commit-action@v5
- #       with:
- #         branch: main
- #         commit_message: ':arrow_up: update latest bpb panel'
- #         commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
- #         push_options: '--set-upstream'
+     - name: Pull latest changes
+       run: |
+         git pull origin main
 
-     - name: Commit and push changes
+     - name: Commit changes
        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-        commit_message: ":arrow_up: update latest bpb panel"
-        push_options: "--force-with-lease"# Safer than --force
+          branch: main
+          commit_message: ':arrow_up: update latest bpb panel'
+          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+          push_options: '--set-upstream'
+
