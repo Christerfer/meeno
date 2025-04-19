@@ -5,7 +5,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 1 * * *"  # 每天凌晨1:00运行
+    # 每天凌晨1:00运行
+    - cron: "0 1 * * *"
 
 permissions:
   contents: write
@@ -26,11 +27,9 @@ jobs:
       - name: 安装依赖项
         run: |
           npm install -g javascript-obfuscator
-
       - name: 下载 BPB worker.js
         run: |
-          wget -O origin.js https://raw.githubusercontent.com/bia-pain-bache/BPB-Worker-Panel/main/src/worker.js
-
+          wget -O origin.js https://raw.githubusercontent.com/bia-pain-bache/BPB-Worker-Panel/main/build/unobfuscated-worker.js
       - name: 混淆 BPB worker.js
         run: |
           javascript-obfuscator origin.js --output _worker.js \
@@ -44,7 +43,6 @@ jobs:
             --string-array-threshold 0.75 \
             --transform-object-keys true \
             --unicode-escape-sequence true
-
       - name: 提交更改
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
