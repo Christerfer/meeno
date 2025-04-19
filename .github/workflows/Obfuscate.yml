@@ -5,8 +5,7 @@ on:
     branches:
       - main
   schedule:
-    # 每天凌晨1:00运行
-    - cron: "0 1 * * *"
+    - cron: "0 1 * * *"  # 每天凌晨1:00运行
 
 permissions:
   contents: write
@@ -30,7 +29,7 @@ jobs:
 
       - name: 下载 BPB worker.js
         run: |
-          wget -O origin.js https://raw.githubusercontent.com/bia-pain-bache/BPB-Worker-Panel/main/build/unobfuscated-worker.js
+          wget -O origin.js https://raw.githubusercontent.com/bia-pain-bache/BPB-Worker-Panel/main/src/worker.js
 
       - name: 混淆 BPB worker.js
         run: |
